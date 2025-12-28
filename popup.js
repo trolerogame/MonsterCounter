@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // se actualizará automáticamente cuando cambie el valor en 'sync'.
   if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.onChanged) {
     chrome.storage.onChanged.addListener((changes, areaName) => {
+      console.log(changes.count)
       if (areaName === 'sync' && changes.count) {
         const newVal = Number(changes.count.newValue) || 0;
         render(newVal);
