@@ -10,14 +10,19 @@ document.addEventListener('DOMContentLoaded', () => {
   function getCount(cb) {
     if (hasChromeSync) {
       try {
-        chrome.storage.sync.get(['count'], (res) => cb(Number(res?.count) || 0));
+        chrome.storage.sync.get(['count'], (res) => {
+          console.log('[popup] get count from sync ->', res?.count);
+          cb(Number(res?.count) || 0);
+        });
       } catch (e) {
         // if sync fails for any reason, fallback
         const v = Number(localStorage.getItem('mc_count')) || 0;
+        console.warn('[popup] chrome.storage.sync.get failed, fallback localStorage ->', e);
         cb(v);
       }
     } else {
       const v = Number(localStorage.getItem('mc_count')) || 0;
+      console.log('[popup] get count from localStorage ->', v);
       cb(v);
     }
   }
@@ -25,12 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
   function setCount(n, cb) {
     if (hasChromeSync) {
       try {
-        chrome.storage.sync.set({ count: n }, () => { if (cb) cb(); });
+        chrome.storage.sync.set({ count: n }, () => { console.log('[popup] set count to sync ->', n); if (cb) cb(); });
       } catch (e) {
+        console.warn('[popup] chrome.storage.sync.set failed, fallback localStorage ->', e);
         localStorage.setItem('mc_count', String(n));
         if (cb) cb();
       }
     } else {
+      console.log('[popup] set count to localStorage ->', n);
       localStorage.setItem('mc_count', String(n));
       if (cb) cb();
     }
