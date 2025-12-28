@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mango Loco</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <div class="card">
+      <div class="skull-wrap">
+        <!-- Usamos iconSkull.png si está presente; popup.js reemplaza por un SVG si falla -->
+        <img id="skull" src="iconSkull.png" alt="Icono de calavera">
+      </div>
+
+      <div class="counter-row" role="group" aria-label="Contador de monsters">
+        <button id="decrement" class="btn circle" aria-label="Disminuir">−</button>
+        <div id="count" class="count" aria-live="polite">0</div>
+        <button id="increment" class="btn circle" aria-label="Aumentar">+</button>
+      </div>
+      <div class="since-text">Desde: 1 Noviembre 2025</div>
+    </div>
+
+
+
+    <script src="popup.js"></script>
+  </body>
+</html>

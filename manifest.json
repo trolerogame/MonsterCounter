@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Mango Loco Monster Counter",
+  "version": "1.0",
+  "description": "Contador de monster de mango loco tomadas hasta la fecha de creación de el script.",
+  "permissions": ["scripting", "storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Mango Loco Monster Counter",
+    "default_popup": "popup.html"
+  }
+}
